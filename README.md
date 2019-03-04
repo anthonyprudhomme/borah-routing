@@ -13,12 +13,11 @@ Mandatory parameters:
 [MST method]: it can either be prim or kruskal. This is the name of the method you want to the program to use to make the MST.
 
 Example:
-
     python main.py points_10_5.pts.txt prim
 
-## If you wanna try the program with a file that wasn't provided in the project resource:
+## If you want to try the program with a file that wasn't provided in the project resource
 
 Put your file in the "Points" folder located at the root of the project.
 Put that filename as parameter to the run command (as explained above).
 
-## If you encounter any issue, contact aprudhomme3@gatech.edu or gguerin3@gatech.edu
+### If you encounter any issue, contact aprudhomme3@gatech.edu or gguerin3@gatech.edu
