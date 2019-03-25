@@ -2,6 +2,9 @@
 
 ## Getting started
 
+    python -m pip install -U matplotlib
+    python -m pip install -U networkx
+
 To run the project, open any terminal, go to the project root (inside borah-routing) and run the following command:
 
     python main.py [filename] [MST method]
