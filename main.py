@@ -3,6 +3,7 @@ import sys
 import matplotlib.pyplot as plt
 import networkx as nx
 import prim
+import kruskal
 import math
 
 def check_for_input_errors():
@@ -40,17 +41,16 @@ if check_for_input_errors():
 
     
     if 'prim' == sys.argv[2].lower():
-        prim_result = prim.prims(len(nodes), graph_matrix)
-        for row in prim_result:
+        result = prim.prims(len(nodes), graph_matrix)
+        for row in result:
             graph.add_edge(row[0], row[1])
-        #MST = prim_result #we will just use this list to exctract coordinates of all nodes belonging to the MST
+        #MST = result #we will just use this list to exctract coordinates of all nodes belonging to the MST
 
     if 'kruskal' == sys.argv[2].lower():
-        print ('Not implemented yet')
-        #list_to_create_hanan = kruskal_result
-        #kruskal_result = kruskal.kruskal(len(nodes), graph_matrix)
-        #for row in kruskal_result:
-        #    graph.add_edge(row[0], row[1])
+        #list_to_create_hanan = result
+        result = kruskal.kruskal(len(nodes), graph_matrix)
+        for row in result:
+            graph.add_edge(row[0], row[1])
 
     node_position=nx.get_node_attributes(graph,'node_position')
     #print(node_position)
@@ -62,10 +62,10 @@ if check_for_input_errors():
     #we build hanan matrix which contains x and y coordinates of all hanan node. Il me fallait juste extraire les coordonnees de tous les noeuds du graphes
     #Je sais pas pourquoi jai fait tout ca en fait. 
     hanan = []
-    for i in range(len(prim_result)):
+    for i in range(len(result)):
         for j in range(2):
-            if prim_result[i][j] not in list_to_create_hanan: #to only add node index once, for instance if there is edge (4,0) and (0,2), we want to add 0 only once
-                list_to_create_hanan.append(prim_result[i][j])
+            if result[i][j] not in list_to_create_hanan: #to only add node index once, for instance if there is edge (4,0) and (0,2), we want to add 0 only once
+                list_to_create_hanan.append(result[i][j])
     list_to_create_hanan.sort()
     print("list_to_create_hanan =")
     print(list_to_create_hanan)
@@ -87,8 +87,8 @@ if check_for_input_errors():
     print(list_of_hanan_nodes)    
     #print("graph_matrix =")
     #print(graph_matrix)
-    #print("prim_result =")
-    #print(prim_result)
+    #print("result =")
+    #print(result)
     
     
     #Now we will plot hanan node on the graph
