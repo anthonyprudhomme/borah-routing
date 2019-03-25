@@ -57,7 +57,10 @@ def prims(vertices_number, graph_matrix):
     # start at new vertex and reset min edge
     vertex = minEdge[1]
     minEdge = [None,None,float('inf')]
-    
+  #print("adjMatrix =")  
+  #print(adjMatrix)
+  #print("MST =")
+  #print(MST)
   return MST
 
 

@@ -28,6 +28,7 @@ if check_for_input_errors():
     for index, line in enumerate(pointsFile):
         pos_x, pos_y = [int(x) for x in line.split()]
         graph.add_node(index, node_position=(pos_x, pos_y))
+        print(index,(pos_x, pos_y))
         for node_id in nodes:
             x1 = graph.nodes[node_id]['node_position'][0]
             x2 = graph.nodes[index]['node_position'][0]
@@ -42,14 +43,77 @@ if check_for_input_errors():
         prim_result = prim.prims(len(nodes), graph_matrix)
         for row in prim_result:
             graph.add_edge(row[0], row[1])
+        #MST = prim_result #we will just use this list to exctract coordinates of all nodes belonging to the MST
 
     if 'kruskal' == sys.argv[2].lower():
         print ('Not implemented yet')
+        #list_to_create_hanan = kruskal_result
         #kruskal_result = kruskal.kruskal(len(nodes), graph_matrix)
         #for row in kruskal_result:
         #    graph.add_edge(row[0], row[1])
 
     node_position=nx.get_node_attributes(graph,'node_position')
+    #print(node_position)
     nx.draw(graph, node_position, with_labels=True, font_weight='bold')
+    
+    list_to_create_hanan = [] #list of nodes index in the MST
+    
+    
+    #we build hanan matrix which contains x and y coordinates of all hanan node. Il me fallait juste extraire les coordonnees de tous les noeuds du graphes
+    #Je sais pas pourquoi jai fait tout ca en fait. 
+    hanan = []
+    for i in range(len(prim_result)):
+        for j in range(2):
+            if prim_result[i][j] not in list_to_create_hanan: #to only add node index once, for instance if there is edge (4,0) and (0,2), we want to add 0 only once
+                list_to_create_hanan.append(prim_result[i][j])
+    list_to_create_hanan.sort()
+    print("list_to_create_hanan =")
+    print(list_to_create_hanan)
+    for node_id in nodes:
+         if node_id in list_to_create_hanan:
+            x = graph.nodes[node_id]['node_position'][0]
+            y = graph.nodes[node_id]['node_position'][1]
+            hanan.append([x,y])
 
+    #print("hanan =")
+    #print(hanan)        
+          
+    list_of_hanan_nodes = []
+    for i in range(len(hanan)):
+        for j in range(len(hanan)):
+            if (i != j) and ([hanan[i][0],hanan[j][1]] not in hanan) and ([hanan[i][0],hanan[j][1]] not in list_of_hanan_nodes):
+                list_of_hanan_nodes.append([hanan[i][0],hanan[j][1]])
+    print("list_of_hanan_nodes =")            
+    print(list_of_hanan_nodes)    
+    #print("graph_matrix =")
+    #print(graph_matrix)
+    #print("prim_result =")
+    #print(prim_result)
+    
+    
+    #Now we will plot hanan node on the graph
+    nbr_points_in_graph = len(list_to_create_hanan)
+    hanan_nodes_position = {}
+    for i in range(nbr_points_in_graph,nbr_points_in_graph+len(list_of_hanan_nodes)):
+        hanan_nodes_position[i] = tuple(list_of_hanan_nodes[i-nbr_points_in_graph])
+        print(hanan_nodes_position[i])
+        graph.add_node(tuple([i,hanan_nodes_position[i]]))
+    print("hanan_nodes_position =")
+    print(hanan_nodes_position)
+    node_position.update(hanan_nodes_position)
+    print("la position de tous les noeuds est =")
+    print(node_position)
+    color_map = []
+    for i in range(len(list_of_hanan_nodes) + len(list_to_create_hanan)):
+        if i < len(list_to_create_hanan):
+            color_map.append('red')
+        else:
+            color_map.append('green')
+            
+    #nx.draw(graph,node_position,node_color = color_map, with_labels=True, font_weight='bold')
+    #nx.draw(hanan_nodes_position,node_color='b')
+    
+    
+    
     plt.show()
+    
