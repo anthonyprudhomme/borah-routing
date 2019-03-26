@@ -29,18 +29,15 @@ def kruskal(vertices_number, graph_matrix):
             # Merge of the 2 lists of possible_path
             possible_paths[first_path_index] = possible_paths[first_path_index] + possible_paths[second_path_index]
             possible_paths.pop(second_path_index)
-        else: 
-            if first_path_index != -1:
-                # Add the node to the list of possible_path
-                possible_paths[first_path_index].append(smallest_weighted_edge[1])
-            else: 
-                if second_path_index !=-1:
-                    # Add the node to the list of possible_path
-                    possible_paths[second_path_index].append(smallest_weighted_edge[0])
-                else:
-                    if (not cycle_detected): 
-                        # None of the 2 nodes of the edge belong to a possible_path so we create a new possible_path
-                        possible_paths.append([smallest_weighted_edge[0], smallest_weighted_edge[1]])
+        elif first_path_index != -1:
+            # Add the node to the list of possible_path
+            possible_paths[first_path_index].append(smallest_weighted_edge[1])
+        elif second_path_index !=-1:
+            # Add the node to the list of possible_path
+            possible_paths[second_path_index].append(smallest_weighted_edge[0])
+        elif not cycle_detected: 
+            # None of the 2 nodes of the edge belong to a possible_path so we create a new possible_path
+            possible_paths.append([smallest_weighted_edge[0], smallest_weighted_edge[1]])
     return list_of_added_edges
            
           
