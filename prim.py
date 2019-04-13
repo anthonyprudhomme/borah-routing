@@ -16,7 +16,7 @@ def createAdjMatrix(vertices_number, graph_matrix):
     
   return adjMatrix
 
-def prims(vertices_number, graph_matrix):
+def prim(vertices_number, graph_matrix):
   
   # create adj matrix from graph
   adjMatrix = createAdjMatrix(vertices_number, graph_matrix)
@@ -25,14 +25,14 @@ def prims(vertices_number, graph_matrix):
   vertex = 0
   
   # initialize empty edges array and empty MST
-  MST = []
+  mst = []
   edges = []
   visited = []
-  minEdge = [None,None,float('inf')]
+  min_edge = [None,None,float('inf')]
   
   # run prims algorithm until we create an MST
   # that contains every vertex from the graph
-  while len(MST) != vertices_number-1:
+  while len(mst) != vertices_number-1:
     
     # mark this vertex as visited
     visited.append(vertex)
@@ -44,44 +44,17 @@ def prims(vertices_number, graph_matrix):
         
     # find edge with the smallest weight to a vertex
     # that has not yet been visited
-    for e in range(0, len(edges)):
-      if edges[e][2] < minEdge[2] and edges[e][1] not in visited:
-        minEdge = edges[e]
+    for edge in range(0, len(edges)):
+      if edges[edge][2] < min_edge[2] and edges[edge][1] not in visited:
+        min_edge = edges[edge]
         
     # remove min weight edge from list of edges
-    edges.remove(minEdge)
+    edges.remove(min_edge)
 
     # push min edge to MST
-    MST.append(minEdge)
+    mst.append(min_edge)
       
     # start at new vertex and reset min edge
-    vertex = minEdge[1]
-    minEdge = [None,None,float('inf')]
-  #print("adjMatrix =")  
-  #print(adjMatrix)
-  #print("MST =")
-  #print(MST)
-  return MST
-
-
-def default_prim():
-  
-    # graph vertices are actually represented as numbers
-    # like so: 0, 1, 2, ... V-1
-    a, b, c, d, e, f = 0, 1, 2, 3, 4, 5
-
-    # graph edges with weights
-    # diagram of graph is shown above
-    graph_matrix = [
-    [a,b,2],
-    [a,c,3],
-    [b,d,3],
-    [b,c,5],
-    [b,e,4],
-    [c,e,4],
-    [d,e,2],
-    [d,f,3],
-    [e,f,5]
-    ]
-    # pass the # of vertices and the graph to run prims algorithm 
-    print prims(6, graph_matrix)  
+    vertex = min_edge[1]
+    min_edge = [None,None,float('inf')]
+  return mst
