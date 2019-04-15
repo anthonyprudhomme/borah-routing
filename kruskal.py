@@ -15,7 +15,7 @@ def kruskal(vertices_number, graph_matrix):
         else:
             for index, path in enumerate(possible_paths):
                 if ((smallest_weighted_edge[0] in path) and (smallest_weighted_edge[1] in path)):
-                    ##A cycle has been created, so we dont add this node to list_of_added_edges
+                    # A cycle has been created, so we dont add this node to list_of_added_edges
                     cycle_detected = True
                 else:
                     if (smallest_weighted_edge[0] in path):
