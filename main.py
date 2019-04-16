@@ -86,8 +86,7 @@ if __name__ == '__main__':
     after_mst_timestamp = current_milli_time()
     wirelength_before = utils.compute_wirelength(node_position, graph)
 
-    index_of_next_node = len(x_hanan_nodes) * len(y_hanan_nodes)
-
+    index_of_next_node = len(x_hanan_nodes) * len(y_hanan_nodes)    
     # Run borah routing
     for iteration in range(0, int(args.num_pass)):
         index_of_next_node = borah.borah(edges, node_position, x_hanan_nodes, y_hanan_nodes, adjacent_nodes_dict, graph, plot, args.show_progress, index_of_next_node)

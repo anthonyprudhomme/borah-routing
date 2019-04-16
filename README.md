@@ -7,16 +7,26 @@
 
 To run the project, open any terminal, go to the project root (inside borah-routing) and run the following command:
 
-    python main.py [filename] [MST method]
+Example Usages:
+    python main.py --input points_10_5.pts.txt --mst_alg prim --num_pass 10 --show_progress
+
+    -h, --help          show this help message and exit
+    -i INPUT, --input INPUT
+                        Input points file.
+    -mst {prim,kruskal}, --mst_alg {prim,kruskal}
+                        Minimum spanning tree algorithm.
+    -pass NUM_PASS, --num_pass NUM_PASS
+                        Number of pass you want to run.
+    -prog, --show_progress
+                        Shows an updated graph for each new added Steiner
+                        point. /!\ Performance will be highly degraded in that
+                        case. /!\
 
 Mandatory parameters:
 
-[filename]: the filename parameters correspond to the name of the file you want to read the points from e.g. : points_10_5.pts.txt
+[--input]: the filename parameters correspond to the name of the file you want to read the points from e.g. : points_10_5.pts.txt
 
-[MST method]: it can either be prim or kruskal. This is the name of the method you want to the program to use to make the MST.
-
-Example:
-    python main.py points_10_5.pts.txt prim
+[--mst_alg]: it can either be "prim" or "kruskal". This is the name of the method you want to the program to use to make the MST.
 
 ## If you want to try the program with a file that wasn't provided in the project resource
 
