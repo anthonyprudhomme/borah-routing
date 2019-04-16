@@ -8,7 +8,8 @@
 To run the project, open any terminal, go to the project root (inside borah-routing) and run the following command:
 
 Example Usages:
-    python main.py --input points_10_5.pts.txt --mst_alg prim --num_pass 10 --show_progress
+    
+    python main.py --input points_10_5.pts.txt --mst_alg prim --num_pass 3 --show_progress
 
     -h, --help          show this help message and exit
     -i INPUT, --input INPUT
