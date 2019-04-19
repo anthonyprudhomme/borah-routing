@@ -89,11 +89,15 @@ if __name__ == '__main__':
     index_of_next_node = len(x_hanan_nodes) * len(y_hanan_nodes)    
     # Run borah routing
     for iteration in range(0, int(args.num_pass)):
+        start_time_for_current_iteration = current_milli_time()
         index_of_next_node = borah.borah(edges, node_position, x_hanan_nodes, y_hanan_nodes, adjacent_nodes_dict, graph, plot, args.show_progress, index_of_next_node)
         prepare_next_iteration()
         if int(args.num_pass) > 1:
             wirelength_after = utils.compute_wirelength(node_position, graph)
             print ("Wirelength after iteration " + str(iteration) + " : " + str(wirelength_after)) 
+        end_time_for_current_iteration = current_milli_time()
+        time_for_this_iteration = end_time_for_current_iteration - start_time_for_current_iteration
+        print("time of iteration: " + str(time_for_this_iteration) + "ms")
     wirelength_after = utils.compute_wirelength(node_position, graph)
     end_timestamp = current_milli_time()
     node_position = nx.get_node_attributes(graph,'node_position')

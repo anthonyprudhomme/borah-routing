@@ -2,3 +2,6 @@ Spyder is already running. If you want to open a new
 instance, please pass to it the --new-instance option
 libpng warning: iCCP: known incorrect sRGB profile
 libpng warning: iCCP: known incorrect sRGB profile
+Gtk-Message: 11:13:28.541: GtkDialog mapped without a transient parent. This is discouraged.
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: iCCP: known incorrect sRGB profile
